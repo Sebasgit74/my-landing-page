@@ -1,0 +1,104 @@
+/* MailerLite - Podstawowy reset */
+.ml-embedded {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Style dla dolnego formularza MailerLite w fioletowej sekcji */
+.final-cta .ml-embedded {
+    margin-top: 20px;
+}
+
+.final-cta .ml-embedded input[type="email"],
+.final-cta .ml-embedded input[type="text"] {
+    background: white !important;
+    color: #333 !important;
+    border: none !important;
+    padding: 15px 20px !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    margin-bottom: 15px !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.final-cta .ml-embedded button,
+.final-cta .ml-embedded input[type="submit"] {
+    background: #10B981 !important;
+    color: white !important;
+    border: none !important;
+    padding: 15px 30px !important;
+    border-radius: 8px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    display: block !important;
+    margin: 20px auto 0 auto !important;
+    transition: all 0.3s ease !important;
+}
+
+.final-cta .ml-embedded button:hover,
+.final-cta .ml-embedded input[type="submit"]:hover {
+    background: #059669 !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Ukryj GDPR w dolnym formularzu - może być opcjonalne */
+.final-cta .ml-embedded .ml-form-checkboxRow,
+.final-cta .ml-embedded .ml-field-checkbox {
+    font-size: 12px !important;
+    text-align: center !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin-top: 15px !important;
+}
+
+/* Ukryj duplikujące się przyciski i loading spinnery w dolnym formularzu */
+.final-cta .ml-embedded button:nth-of-type(2),
+.final-cta .ml-embedded .ml-button:nth-of-type(2),
+.final-cta .ml-embedded button + button,
+.final-cta .ml-embedded .ml-button + .ml-button {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Ukryj loading spinnery w dolnym formularzu */
+.final-cta .ml-embedded .ml-spinner,
+.final-cta .ml-embedded [class*="spinner"],
+.final-cta .ml-embedded [class*="loading"],
+.final-cta .ml-embedded div[style*="animation"],
+.final-cta .ml-embedded div[style*="rotate"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Wyłącz animacje w dolnym formularzu */
+.final-cta .ml-embedded * {
+    animation: none !important;
+    transition: background-color 0.3s ease, transform 0.3s ease !important;
+}
+
+/* Bardzo agresywne ukrywanie duplikatów na mobile */
+@media (max-width: 768px) {
+    .final-cta .ml-embedded button:not([type="submit"]:first-of-type),
+    .final-cta .ml-embedded .ml-button:not(:first-child),
+    .final-cta .ml-embedded button:last-child:not(:first-child) {
+        display: none !important;
+        position: absolute !important;
+        left: -9999px !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+    
+    /* Ukryj wszystkie elementy z kręcącymi się animacjami */
+    .final-cta .ml-embedded *[style*="animation"],
+    .final-cta .ml-embedded *[style*="rotate"],
+    .final-cta .ml-embedded *[style*="spin"] {
+        display: none !important;
+    }
+}
