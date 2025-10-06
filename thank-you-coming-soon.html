@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're In! - FIT 40+</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #4ade80;
+            margin-bottom: 1.5rem;
+            animation: bounce 1s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .main-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .confirmation-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .price-highlight {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            color: #1f2937;
+            font-size: 1.8rem;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            margin: 1.5rem 0;
+            display: inline-block;
+        }
+
+        .next-steps {
+            margin-top: 2rem;
+        }
+
+        .next-steps h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+        }
+
+        .step-list {
+            list-style: none;
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .step-list i {
+            color: #4ade80;
+            margin-right: 0.5rem;
+            width: 20px;
+        }
+
+        .logo-section {
+            margin-top: 3rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fbbf24;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .confirmation-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .price-highlight {
+                font-size: 1.4rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Success Icon -->
+        <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+
+        <!-- Main Content -->
+        <h1 class="main-title">You're In!</h1>
+        <p class="subtitle">Your spot is reserved on our priority list</p>
+
+        <!-- Confirmation Card -->
+        <div class="confirmation-card">
+            <h2>✅ Successfully Added</h2>
+            <p style="margin: 1rem 0; font-size: 1.1rem;">
+                You've secured your exclusive graduate pricing for the enhanced FIT 40+ program.
+            </p>
+            
+            <div class="price-highlight">
+                Your Price: £47 (Save £30!)
+            </div>
+
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3>What happens next:</h3>
+                <ul class="step-list">
+                    <li><i class="fas fa-hammer"></i> We'll finish enhancing the program with new content</li>
+                    <li><i class="fas fa-envelope"></i> You'll get valuable tips and updates while you wait</li>
+                    <li><i class="fas fa-rocket"></i> Priority access when the enhanced program launches</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="logo-section">
+            <div class="logo-text">FIT 40+</div>
+        </div>
+    </div>
+</body>
+</html>
