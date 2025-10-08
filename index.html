@@ -1,268 +1,244 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>The 3×3 Method</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 3×3 Method</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#6c79ff; --bg2:#5e6ef7;
+    --card:#7e8aff22; --card-border:#95a0ff55;
+    --text:#0f172a; --muted:#24314d; --white:#fff;
+    --brand:#15d26b; --brand-dark:#0ab759;
+    --shadow:0 10px 30px rgba(22,35,80,.12);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#f6f8ff}
+  h1,h2,h3{margin:0 0 .5rem}
+  .container{max-width:1140px;margin:0 auto;padding:0 24px}
 
-  <style>
-    :root{
-      /* Kolory */
-      --hero-grad-1:#7582ff;
-      --hero-grad-2:#6a77ff;
-      --ink:#0d0f1a;
-      --muted:#6d7890;
-      --panel:#ffffff;
-      --panel-tint:#eef3ff;
-      --cta:#16d072;
-      --cta-ink:#073b1f;
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:var(--white);
+    padding:48px 0 64px;
+    position:relative;
+    /* bezpieczna wersja (gdy obrazów brak): bez peeka */
+    margin-bottom:0;
+  }
+  html.has-hero .hero{ /* gdy obraz faceta się załadował – pokaż peek */
+    margin-bottom:-44px;
+  }
+  .hero .title{font-size:56px;line-height:1.05;font-weight:800;letter-spacing:.5px}
+  .hero .subtitle{opacity:.9;margin-top:8px}
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:28px;
+    align-items:end;margin-top:28px;
+  }
+  .form-card{
+    background:rgba(255,255,255,.14);
+    border:1px solid var(--card-border);
+    border-radius:16px;padding:22px 22px 18px;
+    box-shadow:var(--shadow);backdrop-filter:blur(8px);
+  }
+  .form-card h3{font-size:22px;color:#eef1ff;margin-bottom:12px}
+  .ml-wrap{margin-top:8px}
+  /* wymuś sensowną szerokość elementów z MailerLite */
+  .form-card .ml-form-embedWrapper,
+  .form-card form{width:100%}
 
-      /* Peek – ile nagłówka „Real Results…” ma być widać pod HERO */
-      --peek-desktop: 110px;   /* ustaw 90–140px wg gustu (desktop) */
-      --peek-mobile:   70px;   /* mobile */
-    }
+  .hero-visual{
+    min-height:420px;display:flex;align-items:flex-end;justify-content:center;
+    position:relative;
+  }
+  .hero-visual .stack{
+    position:relative;display:flex;gap:18px;align-items:flex-end;
+  }
+  .bonus-card{
+    width:180px;transform:rotate(-4deg) translateY(6px);
+    filter:drop-shadow(0 20px 30px rgba(0,0,0,.18));
+  }
+  .man-desktop{height:520px;width:auto;filter:drop-shadow(0 20px 30px rgba(0,0,0,.18))}
+  /* mobile hero obraz – ukryty na desktopie */
+  .man-mobile{display:none}
 
-    *{ box-sizing:border-box; }
-    html,body{ margin:0; padding:0; font-family:Poppins,system-ui,Segoe UI,Arial,sans-serif; color:var(--ink); }
-    img{ max-width:100%; display:block; }
-    a{ color:#4b69ff; text-decoration:none; }
-    h1,h2,h3{ margin:0 0 .5rem 0; line-height:1.15; }
-    p{ margin:0 0 1rem 0; color:var(--muted); }
+  /* ---------- TESTIMONIALS ---------- */
+  .section{padding:56px 0}
+  .section.light{background:#f6f8ff}
+  .section h2{font-size:30px;text-align:center}
+  .t-list{margin-top:24px;display:grid;gap:18px}
+  .t-item{
+    background:#fff;border:1px solid #e7ebff;border-radius:12px;padding:16px 18px;
+    box-shadow:var(--shadow)
+  }
+  .t-item small{display:block;margin-top:8px;color:#69779c}
 
-    .container{ width:min(1220px, 92vw); margin-inline:auto; }
+  /* ---------- EBOOK ---------- */
+  .ebook{
+    background:#fff;padding:0 0 34px;
+  }
+  .ebook .visual{
+    display:flex;justify-content:center;
+    margin-top:16px; /* bezpiecznie */
+  }
+  html.has-ebook .ebook .visual{
+    margin-top:-46px; /* „wystaje” lekko do góry, gdy obraz jest */
+  }
+  .ebook-img{max-width:520px;width:92%;height:auto;filter:drop-shadow(0 24px 40px rgba(0,0,0,.16))}
+  .cta{
+    text-align:center;margin-top:12px;
+  }
+  .cta h3{font-size:38px}
+  .cta p{color:#62718f;margin:10px 0 4px}
+  .arrow{font-size:26px;margin-top:8px}
 
-    /* === HERO ============================================================= */
-    .hero{
-      position:relative;
-      z-index:2;                 /* musi być nad sekcją testymoniali (peek) */
-      padding:72px 0 48px;
-      background:linear-gradient(180deg,var(--hero-grad-1),var(--hero-grad-2));
-      color:#fff;
-      overflow:visible;          /* żeby peek był możliwy */
-    }
+  /* ---------- BOTTOM FORM ---------- */
+  .bottom{
+    background:linear-gradient(180deg,var(--bg2),var(--bg1));
+    color:#eef1ff;padding:44px 0 60px;
+  }
+  .bottom .form-card{background:rgba(255,255,255,.12);border-color:#aab3ff55}
+  .btn{
+    display:inline-block;background:var(--brand);color:#05210e;
+    border:0;border-radius:10px;padding:14px 18px;font-weight:800;letter-spacing:.1px;
+    box-shadow:0 8px 18px rgba(21,210,107,.28);cursor:pointer;text-decoration:none
+  }
+  .btn:hover{background:var(--brand-dark)}
+  footer{padding:18px 0;text-align:center;color:#9fb0df;font-size:12px}
 
-    .hero .title{ font-size: clamp(40px, 6vw, 72px); font-weight:800; letter-spacing:.5px; }
-    .hero .tagline{ margin-top:12px; opacity:.95; }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap:28px;
-      align-items:end;
-      margin-top:24px;
-    }
-
-    /* FORM panel (lewa) */
-    .form-card{
-      background:rgba(255,255,255,.16);
-      border:1px solid rgba(255,255,255,.25);
-      box-shadow:0 10px 40px rgba(0,0,0,.12);
-      border-radius:18px;
-      padding:28px;
-      backdrop-filter: blur(3px);
-    }
-    .form-card h3{
-      font-weight:700; font-size: clamp(22px, 2.2vw, 30px);
-      color:#fff; margin-bottom:18px;
-    }
-    .input{ width:100%; height:52px; border-radius:10px; border:none; padding:0 16px; font-size:16px; }
-    .input + .input{ margin-top:12px; }
-    .consent{ margin:12px 0 18px; font-size:14px; color:#e9ecff; }
-    .btn{
-      display:inline-block; width:100%; text-align:center;
-      background:var(--cta); color:#fff; font-weight:700;
-      border:none; border-radius:10px; height:54px; cursor:pointer;
-      box-shadow:0 10px 20px rgba(22,208,114,.28);
-    }
-
-    /* WIZUAL (prawa) – facet */
-    .hero-visual{ position:relative; min-height:340px; }
-    .man-holder{
-      position:absolute; right:0; bottom:-3px;  /* dotyka dolnej krawędzi */
-      pointer-events:none;
-    }
-    /* Facet dużo większy */
-    .man{
-      width: clamp(960px, 72vw, 1600px);
-      height:auto;
-    }
-
-    /* === TESTIMONIALS (peek) ============================================ */
-    .testimonials{
-      position:relative; z-index:1;
-      background:#f5f7ff;
-      /* wciągamy sekcję pod HERO, żeby pojawił się „peek” */
-      margin-top: calc(-1 * var(--peek-desktop));
-      padding: calc(100px + var(--peek-desktop)) 0 90px;
-    }
-    .testimonials .title{
-      font-size: clamp(26px, 3.4vw, 36px);
-      text-align:center;
-      color:#0d1537;
-      margin-bottom:28px;
-      font-weight:800;
-    }
-    .cards{ display:grid; gap:18px; grid-template-columns:1fr; width:min(1000px, 88vw); margin:0 auto; }
-    .card{
-      background:#fff; border:1px solid #e7ebff; border-radius:16px;
-      box-shadow:0 10px 24px rgba(21,35,89,.06); padding:16px 18px;
-    }
-    .card small{ color:#7280a0; }
-
-    /* === BOOK (ebook + CTA blisko) ====================================== */
-    .book-section{ background:#fff; position:relative; z-index:1; }
-    .book-wrap{ width:min(980px, 92vw); margin:0 auto; text-align:center; }
-
-    /* Książka mocniej wystaje w górę */
-    .book{ width:min(820px, 85vw); margin:-300px auto 0; }
-    @media (min-width:1400px){ .book{ margin:-340px auto 0; } }
-
-    /* CTA bliżej książki */
-    .cta-wrap{ margin-top:-8px; }
-    .cta-title{ font-size: clamp(32px, 4vw, 46px); font-weight:800; text-align:center; margin:8px 0 8px; }
-    .cta-sub{ text-align:center; color:#4b55a5; margin-bottom:6px; }
-    .arrow{ text-align:center; font-size:22px; margin:2px 0 6px; }
-    .caption{ text-align:center; color:#6f77aa; margin-top:4px; }
-
-    /* === DOLEK – formularz #2 =========================================== */
-    .cta-panel{
-      background:linear-gradient(180deg,var(--hero-grad-1),var(--hero-grad-2));
-      color:#fff; margin-top:26px;
-      padding: 48px 0 60px;
-    }
-    .form-card.alt{
-      background:rgba(255,255,255,.12);
-      border-color:rgba(255,255,255,.2);
-    }
-
-    /* === MOBILE TWEAKS ================================================== */
-    @media (max-width: 999px){
-      .hero-grid{ grid-template-columns: 1fr; gap:18px; }
-      /* wyśrodkowanie faceta, żeby nie kleił się do lewej */
-      .hero-visual{ display:flex; justify-content:center; min-height:260px; }
-      .man-holder{ position:relative; right:auto; bottom:auto; margin:6px auto 0; }
-      .man{ width: 94vw; }
-    }
-    @media (max-width:767px){
-      .testimonials{
-        margin-top: calc(-1 * var(--peek-mobile));
-        padding-top: calc(88px + var(--peek-mobile));
-        padding-bottom:60px;
-      }
-      /* ebook wyżej na mobile – mocniej wystaje */
-      .book{ margin:-120px auto 0; width:92vw; }
-      .cta-title{ font-size:32px; }
-    }
-
-    /* Stopka drobna */
-    .legal{ font-size:12px; color:#9aa3bf; text-align:center; margin:18px 0 32px; }
-  </style>
-
-  <!-- MailerLite Universal – wczytany raz -->
-  <script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},
-    l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],
-    n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-    ml('account', '1604536');
-  </script>
+  /* ---------- MOBILE ---------- */
+  @media (max-width: 960px){
+    .hero{padding:36px 0 48px}
+    .hero .title{font-size:40px}
+    .hero-grid{grid-template-columns:1fr;gap:20px}
+    .hero-visual{min-height:auto}
+    .bonus-card{width:150px;transform:rotate(-5deg)}
+    .man-desktop{display:none}
+    .man-mobile{display:block;width:min(82vw,340px);height:auto;margin:0 auto;filter:drop-shadow(0 14px 28px rgba(0,0,0,.18))}
+    html.has-hero .hero{margin-bottom:-28px} /* delikatniejszy peek na mobile */
+    .section{padding:44px 0}
+    .cta h3{font-size:32px}
+    .ebook-img{max-width:380px}
+  }
+</style>
 </head>
 <body>
 
-  <!-- ================= HERO ================= -->
+  <!-- HERO -->
   <header class="hero">
     <div class="container">
       <h1 class="title">The 3×3 Method</h1>
-      <p class="tagline">Complete Fitness Reset For Men 40+</p>
+      <p class="subtitle">Complete Fitness Reset For Men 40+</p>
 
       <div class="hero-grid">
-        <!-- LEFT: FORM -->
         <div class="form-card">
           <h3>Unlock Your Free E-book + 7-Day Email Program</h3>
-
-          <!-- Formularz MailerLite #1 -->
-          <div class="ml-embedded" data-form="8aa7Pt">
-            <!-- Jeżeli osadzony formularz chwilowo się nie pokaże, poniżej jest fallback (readonly UI) -->
-            <input class="input" type="email" placeholder="Email" aria-label="Email" />
-            <input class="input" type="text"  placeholder="Name"  aria-label="Name" />
-            <div class="consent">
-              <input type="checkbox" id="c1" />
-              <label for="c1">I agree to receive offers and updates. See our <a href="#" target="_blank" rel="noopener">Privacy Policy</a>.</label>
-            </div>
-            <button class="btn" type="button">UNLOCK MY FREE COURSE &amp; EBOOK</button>
+          <div class="ml-wrap">
+            <!-- MailerLite -->
+            <script>
+              (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},
+              l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n)})
+              (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+              ml('account','1604536');
+            </script>
+            <div class="ml-embedded" data-form="8aa7Pt"></div>
           </div>
         </div>
 
-        <!-- RIGHT: MAN -->
         <div class="hero-visual">
-          <picture class="man-holder">
-            <source srcset="./man-mobile.png" media="(max-width: 767px)"/>
-            <img class="man" src="./man-desktop.png" alt="Coach holding book">
-          </picture>
+          <div class="stack">
+            <img class="bonus-card" src="book-bonus.png" alt="Bonus coaching badge" id="img-bonus">
+            <img class="man-desktop" src="man-desktop.png" alt="Coach holding book" id="img-hero-man">
+            <img class="man-mobile" src="man-mobile.png" alt="Coach holding book (mobile)">
+          </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- ============== TESTIMONIALS (peek) ============== -->
-  <section class="testimonials">
+  <!-- TESTIMONIALS -->
+  <section class="section light">
     <div class="container">
-      <h2 class="title">Real Results from Men Over 40</h2>
-      <div class="cards">
-        <article class="card">
-          <p><em>"Finally found something that doesn’t destroy my knees. More energy than I’ve felt in years."</em></p>
-          <small><strong>David, 43</strong> – Teacher</small>
+      <h2>Real Results from Men Over 40</h2>
+      <div class="t-list">
+        <article class="t-item">
+          <p>“Finally found something that doesn’t destroy my knees. More energy than I’ve felt in years.”</p>
+          <small><strong>David, 43</strong> — Teacher</small>
         </article>
-        <article class="card">
-          <p><em>"Simple changes that fit my lifestyle perfectly. Best investment I’ve made in years."</em></p>
-          <small><strong>Robert, 52</strong> – Business Owner</small>
+        <article class="t-item">
+          <p>“Simple changes that fit my lifestyle perfectly. Best investment I’ve made in years.”</p>
+          <small><strong>Robert, 52</strong> — Business Owner</small>
         </article>
-        <article class="card">
-          <p><em>"I finally have the energy to get through my busy days. The routines are quick and easy to follow — exactly what I needed."</em></p>
-          <small><strong>Mark, 41</strong> – Consultant</small>
+        <article class="t-item">
+          <p>“I finally have the energy to get through my busy days. The routines are quick and easy to follow — exactly what I needed.”</p>
+          <small><strong>Mark, 41</strong> — Consultant</small>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ================= BOOK + CTA BLISKO ================= -->
-  <section class="book-section">
-    <div class="book-wrap">
-      <!-- E-book bardziej wystaje w górę -->
-      <img class="book" src="./book-bonus.png" alt="Free e-book + bonus email coaching">
-
-      <!-- CTA bliżej książki -->
-      <div class="cta-wrap container">
-        <h2 class="cta-title">Ready to Start?</h2>
-        <p class="cta-sub">Get Your Free Resources Now &amp; Start Your Transformation Today</p>
+  <!-- EBOOK VISUAL + CTA -->
+  <section class="ebook">
+    <div class="container">
+      <div class="visual">
+        <img class="ebook-img" src="book-bonus.png" alt="Free e-book + bonus email coaching" id="img-ebook">
+      </div>
+      <div class="cta">
+        <h3>Ready to Start?</h3>
+        <p>Get Your Free Resources Now &amp; Start Your Transformation Today</p>
         <div class="arrow">⬇</div>
-        <p class="caption">Download &amp; Unlock Below</p>
+        <p style="font-size:13px;color:#7c8db3;margin-top:10px">Download &amp; Unlock Below</p>
       </div>
     </div>
   </section>
 
-  <!-- ============== DOLEK: FORM #2 (fiolet) ============== -->
-  <section class="cta-panel">
-    <div class="container" style="max-width:820px">
-      <div class="form-card alt">
+  <!-- BOTTOM FORM -->
+  <section class="bottom">
+    <div class="container">
+      <div class="form-card">
         <h3>Unlock Your Free E-book + 7-Day Email Program</h3>
-
-        <!-- Formularz MailerLite #2 -->
-        <div class="ml-embedded" data-form="8aa7Pt">
-          <input class="input" type="email" placeholder="Email" aria-label="Email" />
-          <input class="input" type="text"  placeholder="Name"  aria-label="Name" />
-          <div class="consent">
-            <input type="checkbox" id="c2" />
-            <label for="c2">I agree to receive offers and updates. See our <a href="#" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Privacy Policy</a>.</label>
-          </div>
-          <button class="btn" type="button">UNLOCK MY FREE COURSE &amp; EBOOK</button>
+        <div class="ml-wrap">
+          <div class="ml-embedded" data-form="8aa7Pt"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <p class="legal">© 2025 FIT 40+. All rights reserved.</p>
+  <footer>© 2025 FIT 40+. All rights reserved.</footer>
+
+<script>
+  // Fallback: jeśli ważne obrazy się nie załadują, wyłączamy „peek” i „wystawanie”,
+  // żeby layout NIGDY się nie rozjechał.
+  function applyFlags(){
+    const hero = document.getElementById('img-hero-man');
+    const ebook = document.getElementById('img-ebook');
+    const html = document.documentElement;
+
+    // HERO
+    if (hero && hero.complete && hero.naturalWidth > 0){
+      html.classList.add('has-hero');
+    } else {
+      html.classList.remove('has-hero');
+    }
+
+    // EBOOK
+    if (ebook && ebook.complete && ebook.naturalWidth > 0){
+      html.classList.add('has-ebook');
+    } else {
+      html.classList.remove('has-ebook');
+    }
+  }
+
+  ['img-hero-man','img-ebook'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('load', applyFlags);
+    el.addEventListener('error', applyFlags);
+  });
+  window.addEventListener('load', applyFlags);
+</script>
 </body>
 </html>
