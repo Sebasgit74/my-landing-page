@@ -5,70 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The 3×3 Method – Fit 40+</title>
   <style>
+    /* RESET + baza */
     *,*::before,*::after{box-sizing:border-box}
     html,body{margin:0;padding:0}
     img,svg{display:block;max-width:100%;height:auto}
     input,button,select,textarea{font:inherit}
     a{text-decoration:none;color:inherit}
-    :root{--container:1120px;--gutter:16px;--radius:16px;--border:#e5e7eb;--text:#0f172a;--muted:#6b7280;--brand1:#6f80ff;--brand2:#5b6af6;--cta:#16a34a}
-    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial;color:var(--text);line-height:1.5;background:#fff}
-    .container{max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter)}
+    :root{
+      --container:1120px; --gutter:16px; --radius:16px;
+      --border:#e5e7eb; --text:#0f172a; --muted:#6b7280;
+      --brand1:#6f80ff; --brand2:#5b6af6; --cta:#16a34a;
+    }
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial;
+      color:var(--text); line-height:1.5; background:#fff;
+    }
+    .container{max-width:var(--container); margin-inline:auto; padding-inline:var(--gutter)}
     .section{padding:56px 0}
-    h1{font-size:clamp(36px,5.5vw,66px);margin:0 0 8px;color:#fff}
-    h2{font-size:clamp(22px,3.2vw,28px);margin:0 0 8px}
-    h3{font-size:clamp(20px,2.6vw,24px);margin:0 0 8px}
-    p{margin:0 0 12px}
+    h1{font-size:clamp(36px,5.5vw,66px); margin:0 0 8px; color:#fff}
+    h2{font-size:clamp(22px,3.2vw,28px); margin:0 0 8px}
+    h3{font-size:clamp(20px,2.6vw,24px); margin:0 0 8px}
     .center{text-align:center}
 
-    /* HERO */
-    .hero-wrap{background:linear-gradient(180deg,var(--brand1),var(--brand2));color:#fff;overflow:hidden}
-    .hero{display:grid;gap:24px;align-items:center}
-    @media (min-width:1000px){.hero{grid-template-columns:1fr 1fr}}
-    .lead{color:#e8ecff;margin-bottom:8px}
-    .form-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:22px;backdrop-filter:blur(2px)}
-    .form-card h3{color:#fff;margin-bottom:14px}
-    .form-note{color:#dbe3ff;font-size:14px}
+    /* ===== HERO: facet „przy dole” + peek następnej sekcji ===== */
+    .hero-wrap{
+      background:linear-gradient(180deg,var(--brand1),var(--brand2));
+      color:#fff; overflow:hidden;
+    }
+    .hero{
+      display:grid; gap:24px; align-items:end;
+      padding-top:72px; padding-bottom:10px;   /* mały bottom -> peek */
+      min-height:820px;                        /* wysoki hero na desktopie */
+    }
+    @media (min-width:1000px){ .hero{grid-template-columns:1fr 1fr} }
+    .lead{color:#e8ecff; margin-bottom:8px}
+    .form-card{
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.35);
+      border-radius:20px; padding:22px; backdrop-filter:blur(2px)
+    }
+    .form-card h3{color:#fff; margin-bottom:14px}
 
-    /* MailerLite – ujednolicenie i 1 przycisk */
+    /* MailerLite – 1 zielony przycisk (bez naszej dodatkowej notki) */
     .newsletter .ml-form-embedContainer,.newsletter .ml-form-embedWrapper,.newsletter .ml-embedded{width:100%}
-    .newsletter input[type="email"],.newsletter input[type="text"]{width:100%;padding:12px 14px;border:1px solid #dbe0ef;border-radius:10px;background:#fff;outline:0;margin:8px 0}
-    .newsletter input[type="checkbox"]{width:auto;margin-right:8px;accent-color:#6366f1}
-    .newsletter button,.newsletter input[type="submit"],.newsletter a.button-primary{display:inline-block;width:100%;padding:12px 16px;margin-top:10px;border:0;border-radius:12px;background:var(--cta);color:#fff;font-weight:800;text-align:center;cursor:pointer}
+    .newsletter input[type="email"],.newsletter input[type="text"]{
+      width:100%; padding:12px 14px; border:1px solid #dbe0ef; border-radius:10px; background:#fff; outline:0; margin:8px 0
+    }
+    .newsletter input[type="checkbox"]{width:auto; margin-right:8px; accent-color:#6366f1}
+    .newsletter button,.newsletter input[type="submit"],.newsletter a.button-primary{
+      display:inline-block; width:100%; padding:12px 16px; margin-top:10px;
+      border:0; border-radius:12px; background:var(--cta); color:#fff; font-weight:800;
+      text-align:center; cursor:pointer
+    }
 
-    /* Obrazy hero: desktop/mobile */
-    .hero-visual{position:relative;display:grid;place-items:end center}
-    .man-desktop{display:none}.man-mobile{display:block}
-    @media (min-width:768px){.man-desktop{display:block}.man-mobile{display:none}}
-    .man{width:min(520px,90%);filter:drop-shadow(0 12px 28px rgba(0,0,0,.18))}
+    /* Obraz w hero – duży i „doklejony” do dołu */
+    .hero-visual{position:relative; display:grid; place-items:end center}
+    .man-desktop{display:none} .man-mobile{display:block}
+    @media (min-width:768px){ .man-desktop{display:block} .man-mobile{display:none} }
+    .man{
+      width:min(920px,128%);       /* skala */
+      transform:translateY(44px);  /* dociągnięcie do dołu sekcji */
+      filter:drop-shadow(0 12px 28px rgba(0,0,0,.18));
+    }
 
-    /* TESTIMONIALS */
-    .testimonials-wrap{background:#f7f9ff}
-    .testimonials{display:grid;gap:18px}
-    .quote{background:#fff;border-radius:14px;border:1.5px solid #c7ccff;padding:18px;box-shadow:0 6px 18px rgba(95,110,255,.08)}
-    .quote em{color:#4b5563}.quote .name{color:#4f46e5;font-weight:700}.quote small{color:#6b7280}
+    /* ===== TESTIMONIALS – szerokie karty jeden pod drugim + peek ===== */
+    .testimonials-wrap{background:#f7f9ff; margin-top:-18px}
+    .testimonials{max-width:900px; margin:24px auto 0; display:grid; gap:18px}
+    .quote{
+      background:#fff; border-radius:14px; border:1.5px solid #c7ccff;
+      padding:18px; box-shadow:0 6px 18px rgba(95,110,255,.08)
+    }
+    .quote em{color:#4b5563} .quote .name{color:#4f46e5; font-weight:700} .quote small{color:#6b7280}
 
-    /* Big image */
-    .book{display:block;margin:24px auto;max-width:720px;width:95%;filter:drop-shadow(0 18px 40px rgba(0,0,0,.18))}
+    /* ===== DUŻA KSIĄŻKA – ZAWSZE „wystaje” (mobile + desktop) ===== */
+    .book-section{position:relative; z-index:1; padding-top:24px}
+    .book{
+      display:block; margin:0 auto; width:96%;
+      max-width:1020px;
+      filter:drop-shadow(0 18px 40px rgba(0,0,0,.18));
+      margin-top:-28px;            /* wystawanie na mobile */
+    }
+    @media (min-width:1000px){
+      .book{ margin-top:-40px; }   /* mocniej na desktopie */
+    }
 
-    /* SECOND CTA */
-    .cta-title{font-size:clamp(42px,7vw,72px);margin:0 0 8px}
-    .cta-sub{color:#6c72ff;font-weight:700;margin-bottom:10px;font-size:clamp(16px,2.6vw,22px)}
-    .arrow{font-size:26px;color:#7680ff;margin:14px 0}
-    .cta-panel{background:linear-gradient(180deg,var(--brand1),var(--brand2));color:#fff;padding:38px 0;margin-top:10px}
+    /* ===== SECOND CTA ===== */
+    .cta-title{font-size:clamp(42px,7vw,72px); margin:0 0 8px}
+    .cta-sub{color:#6c72ff; font-weight:700; margin-bottom:10px; font-size:clamp(16px,2.6vw,22px)}
+    .arrow{font-size:26px; color:#7680ff; margin:14px 0}
+    .cta-panel{background:linear-gradient(180deg,var(--brand1),var(--brand2)); color:#fff; padding:38px 0; margin-top:10px}
 
-    footer{font-size:12px;color:#6b7280;padding:16px 0}
+    footer{font-size:12px; color:#6b7280; padding:16px 0}
+
+    /* Mobile – proporcje */
+    @media (max-width:767px){
+      .hero{min-height:auto; padding-bottom:28px}
+      .man{width:min(520px,90%); transform:none}
+    }
   </style>
 
-  <!-- MailerLite -->
+  <!-- MailerLite (Twój account + embed) -->
   <script>
     (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},
     l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml'); ml('account','1604536');
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account','1604536');
   </script>
 </head>
 <body>
   <!-- HERO -->
-  <header class="hero-wrap section">
+  <header class="hero-wrap">
     <div class="container hero">
       <div>
         <h1>The 3×3 Method</h1>
@@ -76,14 +121,11 @@
         <div class="form-card newsletter">
           <h3>Unlock Your Free E-book + 7-Day Email Program</h3>
           <div class="ml-embedded" data-form="8aa7Pt"></div>
-          <p class="form-note" style="margin-top:10px;">
-            <input type="checkbox" disabled> I agree to receive offers and updates.
-            <a href="#" style="text-decoration:underline;color:#e8ecff">Privacy Policy</a>.
-          </p>
         </div>
       </div>
       <div class="hero-visual">
-        <img class="man man-desktop" src="./images/man-desktop.png" alt="Coach with book">
+        <!-- Uwaga na wielkość liter w nazwie pliku (Man-desktop.png) -->
+        <img class="man man-desktop" src="./images/Man-desktop.png" alt="Coach with book">
         <img class="man man-mobile"  src="./images/man-mobile.png"  alt="Coach mobile">
       </div>
     </div>
@@ -101,8 +143,8 @@
     </div>
   </section>
 
-  <!-- BIG IMAGE -->
-  <section class="section">
+  <!-- BIG BOOK (większa + wysunięta) -->
+  <section class="section book-section">
     <div class="container">
       <img class="book" src="./images/book-bonus.png" alt="The 3x3 Method – book + bonus">
     </div>
@@ -122,10 +164,6 @@
         <div class="form-card newsletter" style="background:transparent;border-color:rgba(255,255,255,.35)">
           <h3 style="color:#fff">Unlock Your Free E-book + 7-Day Email Program</h3>
           <div class="ml-embedded" data-form="8aa7Pt"></div>
-          <p class="form-note" style="margin-top:10px;">
-            <input type="checkbox" disabled> I agree to receive offers and updates.
-            <a href="#" style="text-decoration:underline;color:#e8ecff">Privacy Policy</a>.
-          </p>
         </div>
       </div>
     </div>
