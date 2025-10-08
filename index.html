@@ -1,719 +1,136 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIT 40+ - The 3x3 Method</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- MailerLite Universal -->
-    <script>
-        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-        .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-        n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-        (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-        ml('account', '1604536');
-    </script>
-    <!-- End MailerLite Universal -->
-    
-    <style>
-        /* RESET I PODSTAWY */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The 3×3 Method – Fit 40+</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    img,svg{display:block;max-width:100%;height:auto}
+    input,button,select,textarea{font:inherit}
+    a{text-decoration:none;color:inherit}
+    :root{--container:1120px;--gutter:16px;--radius:16px;--border:#e5e7eb;--text:#0f172a;--muted:#6b7280;--brand1:#6f80ff;--brand2:#5b6af6;--cta:#16a34a}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial;color:var(--text);line-height:1.5;background:#fff}
+    .container{max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter)}
+    .section{padding:56px 0}
+    h1{font-size:clamp(36px,5.5vw,66px);margin:0 0 8px;color:#fff}
+    h2{font-size:clamp(22px,3.2vw,28px);margin:0 0 8px}
+    h3{font-size:clamp(20px,2.6vw,24px);margin:0 0 8px}
+    p{margin:0 0 12px}
+    .center{text-align:center}
 
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
+    /* HERO */
+    .hero-wrap{background:linear-gradient(180deg,var(--brand1),var(--brand2));color:#fff;overflow:hidden}
+    .hero{display:grid;gap:24px;align-items:center}
+    @media (min-width:1000px){.hero{grid-template-columns:1fr 1fr}}
+    .lead{color:#e8ecff;margin-bottom:8px}
+    .form-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:22px;backdrop-filter:blur(2px)}
+    .form-card h3{color:#fff;margin-bottom:14px}
+    .form-note{color:#dbe3ff;font-size:14px}
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #1F2937;
-            background-color: #FFFFFF;
-            overflow-x: hidden;
-            width: 100%;
-        }
+    /* MailerLite – ujednolicenie i 1 przycisk */
+    .newsletter .ml-form-embedContainer,.newsletter .ml-form-embedWrapper,.newsletter .ml-embedded{width:100%}
+    .newsletter input[type="email"],.newsletter input[type="text"]{width:100%;padding:12px 14px;border:1px solid #dbe0ef;border-radius:10px;background:#fff;outline:0;margin:8px 0}
+    .newsletter input[type="checkbox"]{width:auto;margin-right:8px;accent-color:#6366f1}
+    .newsletter button,.newsletter input[type="submit"],.newsletter a.button-primary{display:inline-block;width:100%;padding:12px 16px;margin-top:10px;border:0;border-radius:12px;background:var(--cta);color:#fff;font-weight:800;text-align:center;cursor:pointer}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    /* Obrazy hero: desktop/mobile */
+    .hero-visual{position:relative;display:grid;place-items:end center}
+    .man-desktop{display:none}.man-mobile{display:block}
+    @media (min-width:768px){.man-desktop{display:block}.man-mobile{display:none}}
+    .man{width:min(520px,90%);filter:drop-shadow(0 12px 28px rgba(0,0,0,.18))}
 
-        /* HERO SECTION */
-        .hero {
-            background: linear-gradient(135deg, #636FF0 0%, #667eea 100%);
-            padding: 60px 0 20px 0;
-            min-height: 82vh;
-            display: flex;
-            align-items: center;
-            margin-bottom: 0px;
-            position: relative;
-            overflow: visible;
-        }
+    /* TESTIMONIALS */
+    .testimonials-wrap{background:#f7f9ff}
+    .testimonials{display:grid;gap:18px}
+    .quote{background:#fff;border-radius:14px;border:1.5px solid #c7ccff;padding:18px;box-shadow:0 6px 18px rgba(95,110,255,.08)}
+    .quote em{color:#4b5563}.quote .name{color:#4f46e5;font-weight:700}.quote small{color:#6b7280}
 
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            min-height: 70vh;
-        }
+    /* Big image */
+    .book{display:block;margin:24px auto;max-width:720px;width:95%;filter:drop-shadow(0 18px 40px rgba(0,0,0,.18))}
 
-        @media (max-width: 768px) {
-            .hero {
-                padding: 40px 0;
-                text-align: center;
-            }
-            
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                text-align: center;
-            }
-        }
+    /* SECOND CTA */
+    .cta-title{font-size:clamp(42px,7vw,72px);margin:0 0 8px}
+    .cta-sub{color:#6c72ff;font-weight:700;margin-bottom:10px;font-size:clamp(16px,2.6vw,22px)}
+    .arrow{font-size:26px;color:#7680ff;margin:14px 0}
+    .cta-panel{background:linear-gradient(180deg,var(--brand1),var(--brand2));color:#fff;padding:38px 0;margin-top:10px}
 
-        .hero-offer {
-            margin-top: 40px;
-        }
+    footer{font-size:12px;color:#6b7280;padding:16px 0}
+  </style>
 
-        .hero-man {
-            max-width: 90% !important;
-            margin: 0 auto;
-            height: auto;
-            display: block;
-        }
-
-        .hero-content {
-            color: white;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            font-weight: 400;
-        }
-
-        .hero-offer {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .offer-title {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        /* HERO RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .offer-title {
-                font-size: 1.4rem;
-            }
-        }
-
-        /* HERO IMAGE */
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        .hero-man-desktop {
-            display: block;
-        }
-
-        .hero-man-mobile {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .hero-man-desktop {
-                display: none;
-            }
-            
-            .hero-man-mobile {
-                display: block;
-            }
-        }
-
-        /* Desktop peek effects */
-        @media (min-width: 1024px) {
-            .hero {
-                margin-bottom: -80px;
-                position: relative;
-                z-index: 10;
-                padding: 40px 0 80px 0;
-                min-height: 82vh;
-            }
-            
-            .hero-offer {
-                margin-top: 0px;
-            }
-            
-            .hero::after {
-                content: '';
-                position: absolute;
-                bottom: -20px;
-                left: 0;
-                right: 0;
-                height: 60px;
-                background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #F8FAFF 100%);
-                pointer-events: none;
-                z-index: 15;
-            }
-        }
-
-        /* TESTIMONIALS SECTION */
-        .testimonials {
-            padding: 100px 0;
-            background-color: #F8FAFF;
-            position: relative;
-        }
-
-        @media (max-width: 480px) {
-            .testimonials {
-                padding: 60px 0 40px 0;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .testimonials {
-                margin-top: -30px;
-                padding-top: 80px;
-                margin-bottom: -60px;
-                position: relative;
-                z-index: 20;
-            }
-            
-            .testimonials::after {
-                content: '';
-                position: absolute;
-                bottom: -20px;
-                left: 0;
-                right: 0;
-                height: 80px;
-                background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
-                pointer-events: none;
-                z-index: 5;
-            }
-            
-            .resources {
-                margin-top: -100px;
-                padding: 10px 0 60px 0;
-                margin-bottom: -80px;
-                position: relative;
-                z-index: 25;
-            }
-            
-            .resources-content {
-                margin-top: -80px;
-                gap: 30px;
-            }
-            
-            .final-cta {
-                padding-top: 60px;
-            }
-        }
-
-        .section-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 60px;
-            color: #1F2937;
-            font-weight: 700;
-        }
-
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 40px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .testimonials .section-title {
-                font-size: 3.5rem;
-                color: #1F2937;
-                margin-bottom: 60px;
-            }
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 768px) {
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
-
-        .testimonial-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            color: #4B5563;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .author-name {
-            font-weight: 600;
-            color: #1F2937;
-            font-size: 1.1rem;
-        }
-
-        .author-title {
-            color: #6B7280;
-            font-size: 0.9rem;
-        }
-
-        /* RESOURCES SECTION */
-        .resources {
-            padding: 80px 0;
-            background-color: #FFFFFF;
-            position: relative;
-        }
-
-        .resources-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 768px) {
-            .resources {
-                padding: 60px 0;
-            }
-            
-            .resources-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                text-align: center;
-            }
-        }
-
-        .resources-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .bundle-image {
-            max-width: 100%;
-            height: auto;
-            filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.1));
-            position: relative;
-            z-index: 5;
-            transition: transform 0.3s ease;
-        }
-
-        /* E-book peek effect - DESKTOP ONLY */
-        @media (min-width: 1025px) {
-            .bundle-image {
-                transform: scale(1.2) translateY(-80px);
-                margin-bottom: -60px;
-                position: relative;
-                z-index: 50 !important;
-            }
-            
-            .resources,
-            .testimonials, 
-            .final-cta,
-            .hero {
-                overflow: visible !important;
-            }
-            
-            .resources {
-                z-index: 30 !important;
-                position: relative !important;
-            }
-            
-            .container {
-                overflow: visible !important;
-            }
-        }
-
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .bundle-image {
-                transform: scale(1.25) translateY(-45px);
-                margin-bottom: -25px;
-                position: relative;
-                z-index: 10;
-            }
-        }
-
-        @media (max-width: 768px) and (min-width: 481px) {
-            .bundle-image {
-                transform: scale(1.35) translateY(-50px);
-                margin-bottom: -30px;
-                position: relative;
-                z-index: 10;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .bundle-image {
-                transform: scale(1.45) translateY(-55px);
-                margin-bottom: -35px;
-                position: relative;
-                z-index: 10;
-            }
-        }
-
-        .resources-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #1F2937;
-        }
-
-        .resources-subtitle {
-            font-size: 1.8rem;
-            color: #636FF0;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        .resources-description {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #6B7280;
-        }
-
-        .resources-cta {
-            font-size: 1.1rem;
-            color: #374151;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .resources-title {
-                font-size: 2.5rem;
-            }
-            
-            .resources-subtitle {
-                font-size: 1.5rem;
-            }
-            
-            .resources-description {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .resources-title {
-                font-size: 4.5rem;
-                color: #1F2937;
-                margin-bottom: 10px;
-            }
-            .resources-subtitle {
-                font-size: 2.4rem;
-                color: #636FF0 !important;
-                font-weight: 600 !important;
-            }
-        }
-
-        .scroll-hint-mobile {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .resources-cta {
-                display: none;
-            }
-            
-            .scroll-hint-mobile {
-                display: block;
-                text-align: center;
-                margin-top: 30px;
-            }
-        }
-
-        .arrow-down {
-            font-size: 2rem;
-            color: #636FF0;
-            animation: bounce 2s infinite;
-            margin-bottom: 10px;
-        }
-
-        .hint-text {
-            display: block;
-            font-size: 1rem;
-            color: #6B7280;
-            font-weight: 500;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-
-        /* FINAL CTA SECTION */
-        .final-cta {
-            padding: 80px 0;
-            background-color: #F8FAFF;
-        }
-
-        .cta-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .cta-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 40px;
-            color: #1F2937;
-        }
-
-        @media (max-width: 768px) {
-            .final-cta {
-                padding: 60px 0;
-            }
-            
-            .cta-title {
-                font-size: 2rem;
-            }
-        }
-
-        /* FOOTER */
-        .footer {
-            background-color: #1F2937;
-            padding: 30px 0;
-            text-align: center;
-        }
-
-        .copyright {
-            color: #D1D5DB;
-            font-size: 0.9rem;
-        }
-
-        /* DESKTOP SPECIFIC FIXES */
-        @media (min-width: 1025px) {
-            .hero {
-                min-height: 98vh !important;
-                padding: 20px 0 0px 0 !important;
-            }
-            
-            .testimonials .container {
-                margin-top: -40px !important;
-            }
-            
-            .hero-image {
-                display: flex;
-                align-items: flex-end;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .hero {
-                padding: 40px 0;
-                min-height: 100vh;
-            }
-            
-            .hero-container {
-                height: 100%;
-                align-items: flex-start;
-            }
-        }
-    </style>
+  <!-- MailerLite -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},
+    l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml'); ml('account','1604536');
+  </script>
 </head>
 <body>
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">The 3x3 Method</h1>
-                <p class="hero-subtitle">Complete Fitness Reset For Men 40+</p>
-                
-                <div class="hero-offer">
-                    <h2 class="offer-title">Unlock Your Free E-book + 7-Day Email Program</h2>
-                    
-                    <div class="ml-embedded" data-form="8aa7Pt"></div>
-                </div>
-            </div>
-            
-            <div class="hero-image">
-                <img src="images/hero-man-nobg.png" alt="Fitness Coach - The 3x3 Method + Bonus Email Coaching" class="hero-man hero-man-desktop">
-                <img src="images/hero-man-cream-bg.png" alt="Fitness Coach - The 3x3 Method + Bonus Email Coaching" class="hero-man hero-man-mobile">
-            </div>
+  <!-- HERO -->
+  <header class="hero-wrap section">
+    <div class="container hero">
+      <div>
+        <h1>The 3×3 Method</h1>
+        <p class="lead">Complete Fitness Reset For Men 40+</p>
+        <div class="form-card newsletter">
+          <h3>Unlock Your Free E-book + 7-Day Email Program</h3>
+          <div class="ml-embedded" data-form="8aa7Pt"></div>
+          <p class="form-note" style="margin-top:10px;">
+            <input type="checkbox" disabled> I agree to receive offers and updates.
+            <a href="#" style="text-decoration:underline;color:#e8ecff">Privacy Policy</a>.
+          </p>
         </div>
-    </section>
+      </div>
+      <div class="hero-visual">
+        <img class="man man-desktop" src="./images/man-desktop.png" alt="Coach with book">
+        <img class="man man-mobile"  src="./images/man-mobile.png"  alt="Coach mobile">
+      </div>
+    </div>
+  </header>
 
-    <!-- TESTIMONIALS SECTION -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">Real Results from Men Over 40</h2>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Finally found something that doesn't destroy my knees. More energy than I've felt in years."</p>
-                    <div class="testimonial-author">
-                        <strong class="author-name">David, 43</strong>
-                        <span class="author-title">Teacher</span>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Simple changes that fit my lifestyle perfectly. Best investment I've made in years."</p>
-                    <div class="testimonial-author">
-                        <strong class="author-name">Robert, 52</strong>
-                        <span class="author-title">Business Owner</span>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"I finally have the energy to get through my busy days. The routines are quick and easy to follow — exactly what I needed."</p>
-                    <div class="testimonial-author">
-                        <strong class="author-name">Mark, 41</strong>
-                        <span class="author-title">Consultant</span>
-                    </div>
-                </div>
-            </div>
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-wrap section">
+    <div class="container">
+      <h2 class="center">Real Results from Men Over 40</h2>
+      <div class="testimonials" style="margin-top:24px">
+        <article class="quote"><p><em>"Finally found something that doesn't destroy my knees. More energy than I've felt in years."</em></p><p class="name">David, 43</p><small>Teacher</small></article>
+        <article class="quote"><p><em>"Simple changes that fit my lifestyle perfectly. Best investment I've made in years."</em></p><p class="name">Robert, 52</p><small>Business Owner</small></article>
+        <article class="quote"><p><em>"I finally have the energy to get through my busy days. The routines are quick and easy to follow — exactly what I needed."</em></p><p class="name">Mark, 41</p><small>Consultant</small></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIG IMAGE -->
+  <section class="section">
+    <div class="container">
+      <img class="book" src="./images/book-bonus.png" alt="The 3x3 Method – book + bonus">
+    </div>
+  </section>
+
+  <!-- SECOND CTA -->
+  <section class="section center">
+    <div class="container">
+      <h2 class="cta-title">Ready to Start?</h2>
+      <p class="cta-sub">Get Your Free Resources Now & Start Your Transformation Today</p>
+      <div class="arrow">⬇</div>
+      <p style="color:#6b7280">Download & Unlock Below</p>
+    </div>
+
+    <div class="cta-panel">
+      <div class="container">
+        <div class="form-card newsletter" style="background:transparent;border-color:rgba(255,255,255,.35)">
+          <h3 style="color:#fff">Unlock Your Free E-book + 7-Day Email Program</h3>
+          <div class="ml-embedded" data-form="8aa7Pt"></div>
+          <p class="form-note" style="margin-top:10px;">
+            <input type="checkbox" disabled> I agree to receive offers and updates.
+            <a href="#" style="text-decoration:underline;color:#e8ecff">Privacy Policy</a>.
+          </p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- RESOURCES SECTION -->
-    <section class="resources">
-        <div class="container">
-            <div class="resources-content">
-                <div class="resources-image">
-                    <img src="images/ebook-nobg.png" alt="The 3x3 Method - Free E-book + Bonus Email Coaching" class="bundle-image">
-                </div>
-                
-                <div class="resources-text">
-                    <h2 class="resources-title">Ready to Start?</h2>
-                    <h3 class="resources-subtitle">Get Your Free Resources Now</h3>
-                    <p class="resources-description">Download your complete guide and start your transformation today.</p>
-                    <p class="resources-cta">Download & Unlock Below</p>
-                    <div class="scroll-hint-mobile">
-                        <div class="arrow-down">↓</div>
-                        <span class="hint-text">Download & Unlock Below</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FINAL CTA SECTION -->
-    <section class="final-cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Unlock Your Free E-book + 7-Day Email Program</h2>
-                
-                <div class="ml-embedded" data-form="8aa7Pt"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <p class="copyright">© 2025 FIT 40+. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // MailerLite form success redirect - FORCE REDIRECT DO NASZEJ THANK YOU
-        function initMailerLiteRedirect() {
-            // Method 1: Direct callback setup
-            if (typeof ml !== 'undefined') {
-                ml('callback', 'subscribe', function(data) {
-                    console.log('MailerLite callback triggered, redirecting to thank-you.html');
-                    window.location.href = 'thank-you.html';
-                });
-            }
-            
-            // Method 2: Wait for ml to be available if not yet loaded
-            if (typeof ml === 'undefined') {
-                setTimeout(function() {
-                    if (typeof ml !== 'undefined') {
-                        ml('callback', 'subscribe', function(data) {
-                            console.log('MailerLite callback triggered (delayed), redirecting to thank-you.html');
-                            window.location.href = 'thank-you.html';
-                        });
-                    }
-                }, 1000);
-            }
-            
-            // Method 3: Listen for form submission events on MailerLite forms
-            setTimeout(function() {
-                const mlForms = document.querySelectorAll('[data-form]');
-                mlForms.forEach(function(form) {
-                    form.addEventListener('submit', function(e) {
-                        console.log('MailerLite form submission detected');
-                        setTimeout(function() {
-                            window.location.href = 'thank-you.html';
-                        }, 2000);
-                    });
-                });
-            }, 1500);
-        }
-
-        // Initialize MailerLite redirect when DOM is ready
-        document.addEventListener('DOMContentLoaded', initMailerLiteRedirect);
-    </script>
+  <footer><div class="container">© 2025 FIT 40+. All rights reserved.</div></footer>
 </body>
 </html>
