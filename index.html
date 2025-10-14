@@ -1,3 +1,7 @@
+.html
++ 15
+- 10
+
 <!doctype html>
 <html lang="pl">
 <head>
@@ -16,7 +20,12 @@
       --container:1120px; --gutter:16px;
       --text:#0f172a; --muted:#6b7280;
       --brand1:#6f80ff; --brand2:#5b6af6; --cta:#16a34a;
-      --peek:80px;                      /* lekko widać Real Results */
+      --peek:75px;  /* ile ma być widoczne „Real Results…” pod hero */
+      --peek:140px;  /* ile ma być widoczne „Real Results…” pod hero */
+      --cta-lift:72px;  /* mniejszy dystans między książką a CTA */
+    }
+    @media (max-width:999px){
+      :root{ --cta-lift:40px; }
     }
 
     body{
@@ -31,30 +40,24 @@
     .center{text-align:center}
 
     /* ===== HERO ===== */
-    .hero-wrap{
-      background:linear-gradient(180deg,var(--brand1),var(--brand2));
-      color:#fff; overflow:hidden;
-    }
+    .hero-wrap{background:linear-gradient(180deg,var(--brand1),var(--brand2)); color:#fff; overflow:hidden}
     .hero{
       position:relative;
       display:grid; gap:24px; grid-template-columns:1fr; align-items:end;
-      /* svh = ‘safe viewport height’ – stabilne między Chrome/Edge */
-      min-height:calc(100svh - var(--peek));
-      padding:72px 0 88px;              /* dół trochę większy, by nic nie zasłaniało */
+      min-height:calc(100vh - var(--peek));      /* daje „peek” następnej sekcji */
+      padding:72px 0 24px;                       /* dół 24px – facet dotyka linii */
     }
     @media (min-width:1000px){ .hero{grid-template-columns:1fr 1fr} }
 
     .lead{color:#e8ecff; margin-bottom:8px}
     .form-card{
       background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.35);
-      border-radius:20px; padding:22px; backdrop-filter:blur(2px); position:relative; z-index:3;
+      border-radius:20px; padding:22px; backdrop-filter:blur(2px)
     }
     .form-card h3{color:#fff; margin-bottom:14px}
 
-    /* ===== MailerLite inputs ===== */
-    .newsletter .ml-form-embedContainer,
-    .newsletter .ml-form-embedWrapper,
-    .newsletter .ml-embedded{width:100%}
+    /* MailerLite – 1 zielony przycisk */
+    .newsletter .ml-form-embedContainer,.newsletter .ml-form-embedWrapper,.newsletter .ml-embedded{width:100%}
     .newsletter input[type="email"],.newsletter input[type="text"]{
       width:100%; padding:12px 14px; border:1px solid #dbe0ef; border-radius:10px; background:#fff; outline:0; margin:8px 0
     }
@@ -64,31 +67,24 @@
       border:0; border-radius:12px; background:var(--cta); color:#fff; font-weight:800; text-align:center; cursor:pointer
     }
 
-    /* ===== FACET – ~75% większy, przyklejony do dołu ===== */
-    .hero-visual{position:relative; z-index:2}
+    /* Facet – większy i „przyklejony” do dołu (desktop) */
+    .hero-visual{position:relative}
     .man-holder{
-      position:absolute; right:-10%; bottom:0;     /* dotyka dolnej krawędzi hero */
+      position:absolute; right:0.8%; bottom:-2px;   /* DOTYKA dolnej krawędzi hero */
+      position:absolute; right:-15%; bottom:-68px; /* większy i styka się z dołem */
       pointer-events:none; user-select:none;
     }
     .man{
-      /* znaczne powiększenie + lekkie wysunięcie poza kontener */
-      width:clamp(1800px,122vw,2800px);
+      width:clamp(720px,60vw,1320px);               /* większy facet */
+      width:clamp(640px,62vw,960px);                /* ~75% większy – głowa przy tytule */
+      max-width:none;                                /* pozwala przekroczyć szerokość kontenera */
       filter:drop-shadow(0 12px 28px rgba(0,0,0,.18));
     }
-    /* na bardzo szerokich ekranach jeszcze ciut większy */
-    @media (min-width:1400px){
-      .man{ width:clamp(2000px,128vw,3200px); }
-    }
-
     .man-desktop{display:none} .man-mobile{display:block}
     @media (min-width:768px){ .man-desktop{display:block} .man-mobile{display:none} }
 
-    /* ===== TESTIMONIALS (peek) ===== */
-    .testimonials-wrap{
-      background:#f7f9ff;
-      margin-top:calc(-1 * var(--peek));
-      position:relative; z-index:1;
-    }
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-wrap{background:#f7f9ff; margin-top:0}
     .testimonials{max-width:900px; margin:28px auto 0; display:grid; gap:18px}
     .quote{
       background:#fff; border-radius:14px; border:1.5px solid #c7ccff;
@@ -96,35 +92,53 @@
     }
     .quote em{color:#4b5563} .quote .name{color:#4f46e5; font-weight:700} .quote small{color:#6b7280}
 
-    /* ===== BOOK ===== */
-    .book-section{position:relative; z-index:2; padding:0}
+    /* ===== BOOK (wystaje bardziej) ===== */
+    .book-section{position:relative; z-index:1; padding:0 0 0}        /* mniej luzu na dole */
     .book{
       display:block; margin:0 auto; width:min(96%,1100px);
       filter:drop-shadow(0 18px 40px rgba(0,0,0,.18));
-      margin-top:-260px;
+      margin-top:-240px;                                               /* mocniej wystaje */
     }
-    @media (min-width:1400px){ .book{ margin-top:-300px; } }
-    @media (max-width:767px){ .book{ margin-top:-90px; width:min(95%,760px); } }
+    @media (min-width:1400px){
+      .book{ margin-top:-270px; }                                      /* duże ekrany */
+    }
+    @media (max-width:767px){
+      .book{ margin-top:-70px; width:min(95%,760px); }                 /* mobile */
+    }
 
-    /* ===== CTA ===== */
-    .cta-wrap{padding-top:0}
-    .cta-title{font-size:clamp(42px,7vw,72px); margin:0 0 6px}
+    /* ===== CTA – bliżej książki, większy panel, strzałka animowana ===== */
+    .cta-wrap{padding-top:0}                                           /* bliżej książki */
+    .cta-wrap{padding-top:0; margin-top:calc(-1 * var(--cta-lift))}    /* bliżej książki */
+    .cta-title{font-size:clamp(42px,7vw,72px); margin:0 0 8px}
     .cta-sub{color:#6c72ff; font-weight:700; margin-bottom:8px; font-size:clamp(16px,2.4vw,22px)}
     .arrow{
-      font-size:clamp(30px,3.8vw,44px); color:#6e76ff; margin:2px 0 6px;
-      animation:bounceDown 1.05s infinite ease-in-out; filter:drop-shadow(0 1px 0 rgba(0,0,0,.1));
+      font-size:clamp(30px,3.8vw,44px); color:#6e76ff; margin:6px 0 8px;
+      animation:bounceDown 1.05s infinite ease-in-out;
+      filter:drop-shadow(0 1px 0 rgba(0,0,0,.1));
+      display:inline-block; filter:drop-shadow(0 1px 0 rgba(0,0,0,.1));
+      animation:arrowBounce 1.2s infinite ease-in-out;
     }
-    @keyframes bounceDown{0%,20%,50%,80%,100%{transform:translateY(0)} 40%{transform:translateY(8px)} 60%{transform:translateY(4px)}}
+    @keyframes bounceDown{
+      0%,20%,50%,80%,100%{transform:translateY(0)}
+      40%{transform:translateY(8px)}
+      60%{transform:translateY(4px)}
+    @keyframes arrowBounce{
+      0%,100%{transform:translateY(0)}
+      40%{transform:translateY(12px)}
+      60%{transform:translateY(6px)}
+    }
     .caption{font-size:clamp(15px,2vw,20px); color:#676e7a}
-    .cta-panel{background:linear-gradient(180deg,var(--brand1),var(--brand2)); color:#fff; padding:70px 0; margin-top:0}
+    .cta-panel{
+      background:linear-gradient(180deg,var(--brand1),var(--brand2));
+      color:#fff; padding:70px 0; margin-top:10px                   /* większy panel */
+    }
 
     footer{font-size:12px; color:#6b7280; padding:16px 0}
 
-    /* ===== MOBILE ===== */
+    /* ===== MOBILE FIX – facet nie wchodzi na formularz ===== */
     @media (max-width:767px){
-      .hero{padding-bottom:32px}
       .man-holder{ position:static; display:block; margin:8px auto 0; }
-      .man{ width:90vw; }
+      .man{ width:92vw; }
     }
   </style>
 
@@ -137,65 +151,3 @@
   </script>
 </head>
 <body>
-  <!-- HERO -->
-  <header class="hero-wrap">
-    <div class="container hero">
-      <div>
-        <h1>The 3×3 Method</h1>
-        <p class="lead">Complete Fitness Reset For Men 40+</p>
-        <div class="form-card newsletter">
-          <h3>Get Your Free E-book + 7-Day Email Program</h3>
-          <div class="ml-embedded" data-form="8aa7Pt"></div>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <span class="man-holder">
-          <img class="man man-desktop" src="./images/man-desktop.png" alt="Coach with book">
-          <img class="man man-mobile"  src="./images/man-mobile.png"  alt="Coach mobile">
-        </span>
-      </div>
-    </div>
-  </header>
-
-  <!-- TESTIMONIALS -->
-  <section class="testimonials-wrap section">
-    <div class="container">
-      <h2 class="center">Real Results from Men Over 40</h2>
-      <div class="testimonials" style="margin-top:24px">
-        <article class="quote"><p><em>"Finally found something that doesn't destroy my knees. More energy than I've felt in years."</em></p><p class="name">David, 43</p><small>Teacher</small></article>
-        <article class="quote"><p><em>"Simple changes that fit my lifestyle perfectly. Best investment I've made in years."</em></p><p class="name">Robert, 52</p><small>Business Owner</small></article>
-        <article class="quote"><p><em>"I finally have the energy to get through my busy days. The routines are quick and easy to follow — exactly what I needed."</em></p><p class="name">Mark, 41</p><small>Consultant</small></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- BOOK -->
-  <section class="section book-section">
-    <div class="container">
-      <img class="book" src="./images/book-bonus.png" alt="The 3x3 Method – book + bonus">
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section center cta-wrap">
-    <div class="container">
-      <h2 class="cta-title">Ready to Start?</h2>
-      <p class="cta-sub">Get Your Free Resources Now & Start Your Transformation Today</p>
-      <div class="arrow">⬇</div>
-      <p class="caption">Download & Unlock Below</p>
-    </div>
-
-    <div class="cta-panel">
-      <div class="container">
-        <div class="form-card newsletter" style="background:transparent;border-color:rgba(255,255,255,.35)">
-          <h3 style="color:#fff">Unlock Your Free E-book + 7-Day Email Program</h3>
-          <div class="ml-embedded" data-form="8aa7Pt"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer><div class="container">© 2025 FIT 40+. All rights reserved.</div></footer>
-</body>
-</html>
