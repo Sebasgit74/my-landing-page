@@ -16,7 +16,7 @@
       --container:1120px; --gutter:16px;
       --text:#0f172a; --muted:#6b7280;
       --brand1:#6f80ff; --brand2:#5b6af6; --cta:#16a34a;
-      --peek:140px;        /* bazowo (np. mobile/tablet) */
+      --peek:140px;        /* bazowo */
       --cta-lift:72px;
     }
     @media (max-width:999px){
@@ -40,7 +40,7 @@
       position:relative;
       display:grid; gap:24px; grid-template-columns:1fr; align-items:end;
       min-height:calc(100vh - var(--peek));
-      padding:72px 0 24px; /* NIE zmieniamy – problem był w --peek */
+      padding:72px 0 24px; /* nie zmieniamy */
     }
     @media (min-width:1000px){ .hero{grid-template-columns:1fr 1fr} }
 
@@ -138,15 +138,15 @@
       .testimonials-wrap{ margin-top:-20px; }
     }
 
-    /* ===== DESKTOP: więcej wysokości hero + delikatny overlap testimonials ===== */
+    /* ===== DESKTOP: wyższe hero + mniejszy overlap testimonials ===== */
     @media (min-width:1000px){
       :root{
-        --peek:60px;                /* było 140px – hero jest wyższe, widać przycisk i dłonie */
+        --peek:40px;                /* więcej miejsca na dół hero */
       }
       .testimonials-wrap{
         position:relative;
         z-index:1;
-        margin-top:-60px;           /* subtelne “zajrzenie” pod hero (wcześniej -120px) */
+        margin-top:-36px;           /* bliżej hero, ale już nic nie przycina */
       }
       .testimonials-wrap.section{
         padding-top:0;
