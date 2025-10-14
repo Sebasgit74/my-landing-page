@@ -98,7 +98,7 @@
       .book{ margin-top:-270px; }
     }
     @media (max-width:767px){
-      .book{ margin-top:-70px; width:min(95%,760px); }
+      .book{ margin-top:-110px; width:min(96%,760px); } /* MOBILE: większe wysunięcie i prawie pełna szerokość */
     }
 
     /* ===== CTA ===== */
@@ -125,14 +125,33 @@
 
     /* ===== MOBILE FIX ===== */
     @media (max-width:767px){
+      /* 1) HERO pełnoekranowe zdjęcie faceta, bez niebieskiego paska po prawej */
+      .hero{ padding-inline:0; } /* zabieramy wewnętrzne marginesy tylko w hero */
+      .hero-visual{
+        width:100vw;
+        left:50%;
+        transform:translateX(-50%);
+        position:relative;
+      }
       .man-holder{ position:static; display:block; margin:8px auto 0; }
-      .man{ width:92vw; }
+      .man{ width:100vw; } /* pełna szerokość ekranu, równo do krawędzi */
+
+      /* 2) Przywracamy „gutter” dla treści i formularza, by nie dotykały krawędzi */
+      .hero > div:first-child{ padding-inline:16px; } /* jak dolny formularz */
+
+      /* 3) Delikatniejsze podjechanie Real Results pod hero na mobile */
+      .testimonials-wrap{ margin-top:-20px; }
+    }
+
+    /* ===== TESTIMONIALS GAP – mocniej tylko na desktopie ===== */
+    @media (min-width:1000px){
+      .testimonials-wrap{ margin-top:-80px; }
     }
 
     /* ===== PRZESUNIĘCIE FACETA W PRAWO NA DESKTOPIE ===== */
     @media (min-width:1000px){
       .man-holder{
-        right:-38%; /* jeszcze bardziej w prawo, żeby nie zasłaniał pól */
+        right:-38%; /* w prawo na desktopie, żeby nie zasłaniał pól */
       }
     }
   </style>
