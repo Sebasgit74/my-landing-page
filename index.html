@@ -16,7 +16,8 @@
       --container:1120px; --gutter:16px;
       --text:#0f172a; --muted:#6b7280;
       --brand1:#6f80ff; --brand2:#5b6af6; --cta:#16a34a;
-      --peek:90px;                  /* ile ma wystawać sekcja „Real Results” */
+      /* mniejszy peek, żeby biały blok nie nachodził na formularz */
+      --peek:70px;
     }
 
     body{
@@ -38,15 +39,15 @@
     .hero{
       position:relative;
       display:grid; gap:24px; grid-template-columns:1fr; align-items:end;
-      min-height:calc(100vh - var(--peek));     /* zostawia widoczny „peek” */
-      padding:72px 0 36px;                     /* >0 aby dół nie kleił się do formularza */
+      min-height:calc(100vh - var(--peek));  /* „peek” następnej sekcji */
+      padding:72px 0 56px;                   /* + dół, żeby nic nie zasłaniało przycisku */
     }
     @media (min-width:1000px){ .hero{grid-template-columns:1fr 1fr} }
 
     .lead{color:#e8ecff; margin-bottom:8px}
     .form-card{
       background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.35);
-      border-radius:20px; padding:22px; backdrop-filter:blur(2px)
+      border-radius:20px; padding:22px; backdrop-filter:blur(2px); position:relative; z-index:3;
     }
     .form-card h3{color:#fff; margin-bottom:14px}
 
@@ -61,24 +62,25 @@
       border:0; border-radius:12px; background:var(--cta); color:#fff; font-weight:800; text-align:center; cursor:pointer
     }
 
-    /* ===== FACET – duży i przyklejony do dołu ===== */
-    .hero-visual{position:relative}
+    /* ===== FACET – realne powiększenie i „przyklejenie” do dołu ===== */
+    .hero-visual{position:relative; z-index:2}
     .man-holder{
-      position:absolute; right:-2%; bottom:0;   /* dotyka dolnej krawędzi hero */
+      position:absolute; right:-6%; bottom:0;   /* dotyka dolnej krawędzi hero */
       pointer-events:none; user-select:none;
     }
+    /* ~+75% vs wcześniejsza wersja: dużo większa szerokość + mocniejsze wysunięcie */
     .man{
-      width:clamp(980px,72vw,1600px);           /* DUŻO większy – głowa blisko h1 */
+      width:clamp(1400px,95vw,2200px);
       filter:drop-shadow(0 12px 28px rgba(0,0,0,.18));
     }
     .man-desktop{display:none} .man-mobile{display:block}
     @media (min-width:768px){ .man-desktop{display:block} .man-mobile{display:none} }
 
-    /* ===== TESTIMONIALS ===== */
+    /* ===== TESTIMONIALS (peek) ===== */
     .testimonials-wrap{
       background:#f7f9ff;
-      margin-top:calc(-1 * var(--peek));        /* tworzy „peek” */
-      position:relative; z-index:2;
+      margin-top:calc(-1 * var(--peek));  /* subtelny „peek” */
+      position:relative; z-index:1;
     }
     .testimonials{max-width:900px; margin:28px auto 0; display:grid; gap:18px}
     .quote{
@@ -87,17 +89,17 @@
     }
     .quote em{color:#4b5563} .quote .name{color:#4f46e5; font-weight:700} .quote small{color:#6b7280}
 
-    /* ===== BOOK (wyżej i bliżej „Ready to Start?”) ===== */
-    .book-section{position:relative; z-index:3; padding:0}
+    /* ===== BOOK – lekko bliżej sekcji CTA ===== */
+    .book-section{position:relative; z-index:2; padding:0}
     .book{
       display:block; margin:0 auto; width:min(96%,1100px);
       filter:drop-shadow(0 18px 40px rgba(0,0,0,.18));
-      margin-top:-280px;                         /* mocniej wystaje */
+      margin-top:-260px;
     }
-    @media (min-width:1400px){ .book{ margin-top:-320px; } }
+    @media (min-width:1400px){ .book{ margin-top:-300px; } }
     @media (max-width:767px){ .book{ margin-top:-90px; width:min(95%,760px); } }
 
-    /* ===== CTA – bliżej książki + animowana strzałka ===== */
+    /* ===== CTA ===== */
     .cta-wrap{padding-top:0}
     .cta-title{font-size:clamp(42px,7vw,72px); margin:0 0 6px}
     .cta-sub{color:#6c72ff; font-weight:700; margin-bottom:8px; font-size:clamp(16px,2.4vw,22px)}
@@ -111,8 +113,9 @@
 
     footer{font-size:12px; color:#6b7280; padding:16px 0}
 
-    /* ===== MOBILE FIX – facet nie wchodzi na formularz ===== */
+    /* ===== MOBILE – bez zmian w logice, facet nie wchodzi na formularz ===== */
     @media (max-width:767px){
+      .hero{padding-bottom:32px}
       .man-holder{ position:static; display:block; margin:8px auto 0; }
       .man{ width:90vw; }
     }
