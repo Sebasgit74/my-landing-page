@@ -16,7 +16,7 @@
       --container:1120px; --gutter:16px;
       --text:#0f172a; --muted:#6b7280;
       --brand1:#6f80ff; --brand2:#5b6af6; --cta:#16a34a;
-      --peek:140px;
+      --peek:140px;        /* bazowo (np. mobile/tablet) */
       --cta-lift:72px;
     }
     @media (max-width:999px){
@@ -40,7 +40,7 @@
       position:relative;
       display:grid; gap:24px; grid-template-columns:1fr; align-items:end;
       min-height:calc(100vh - var(--peek));
-      padding:72px 0 24px; /* NIE ruszamy tego – zero paddingowych zmian */
+      padding:72px 0 24px; /* NIE zmieniamy – problem był w --peek */
     }
     @media (min-width:1000px){ .hero{grid-template-columns:1fr 1fr} }
 
@@ -138,24 +138,24 @@
       .testimonials-wrap{ margin-top:-20px; }
     }
 
-    /* ===== DESKTOP: przysuń "Real Results" bliżej hero (bez ruszania hero) ===== */
+    /* ===== DESKTOP: więcej wysokości hero + delikatny overlap testimonials ===== */
     @media (min-width:1000px){
+      :root{
+        --peek:60px;                /* było 140px – hero jest wyższe, widać przycisk i dłonie */
+      }
       .testimonials-wrap{
         position:relative;
         z-index:1;
-        margin-top:-120px;          /* podjeżdża pod bohatera; dostosuj -100…-140px */
+        margin-top:-60px;           /* subtelne “zajrzenie” pod hero (wcześniej -120px) */
       }
       .testimonials-wrap.section{
-        padding-top:0;              /* zero dodatkowego paddingu od góry */
+        padding-top:0;
       }
       .testimonials{
-        margin-top:12px;            /* ciaśniej nad kartami */
+        margin-top:12px;
       }
-    }
-
-    /* ===== PRZESUNIĘCIE FACETA W PRAWO NA DESKTOPIE ===== */
-    @media (min-width:1000px){
-      .man-holder{ right:-38%; }     /* żeby nie zasłaniał pól formularza */
+      /* Facet w prawo, by nie zasłaniał pól */
+      .man-holder{ right:-38%; }
     }
   </style>
 
