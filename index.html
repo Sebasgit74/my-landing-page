@@ -16,7 +16,7 @@
       --container:1120px; --gutter:16px;
       --text:#0f172a; --muted:#6b7280;
       --brand1:#6f80ff; --brand2:#5b6af6; --cta:#16a34a;
-      --peek:60px; /* widoczny „Real Results…” pod hero */
+      --peek:90px;                  /* ile ma wystawać sekcja „Real Results” */
     }
 
     body{
@@ -33,31 +33,24 @@
     /* ===== HERO ===== */
     .hero-wrap{
       background:linear-gradient(180deg,var(--brand1),var(--brand2));
-      color:#fff;
-      overflow:hidden;
+      color:#fff; overflow:hidden;
     }
     .hero{
       position:relative;
-      display:grid;
-      gap:24px;
-      grid-template-columns:1fr;
-      align-items:end;
-      min-height:calc(100vh - var(--peek)); /* hero nieco dłuższe */
-      padding:72px 0 0;
+      display:grid; gap:24px; grid-template-columns:1fr; align-items:end;
+      min-height:calc(100vh - var(--peek));     /* zostawia widoczny „peek” */
+      padding:72px 0 36px;                     /* >0 aby dół nie kleił się do formularza */
     }
     @media (min-width:1000px){ .hero{grid-template-columns:1fr 1fr} }
 
     .lead{color:#e8ecff; margin-bottom:8px}
     .form-card{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.35);
-      border-radius:20px;
-      padding:22px;
-      backdrop-filter:blur(2px)
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.35);
+      border-radius:20px; padding:22px; backdrop-filter:blur(2px)
     }
     .form-card h3{color:#fff; margin-bottom:14px}
 
-    /* ===== MAILERLITE ===== */
+    /* MailerLite – 1 zielony przycisk */
     .newsletter .ml-form-embedContainer,.newsletter .ml-form-embedWrapper,.newsletter .ml-embedded{width:100%}
     .newsletter input[type="email"],.newsletter input[type="text"]{
       width:100%; padding:12px 14px; border:1px solid #dbe0ef; border-radius:10px; background:#fff; outline:0; margin:8px 0
@@ -68,111 +61,60 @@
       border:0; border-radius:12px; background:var(--cta); color:#fff; font-weight:800; text-align:center; cursor:pointer
     }
 
-    /* ===== HERO VISUAL ===== */
+    /* ===== FACET – duży i przyklejony do dołu ===== */
     .hero-visual{position:relative}
     .man-holder{
-      position:absolute;
-      right:1%;
-      bottom:0; /* facet dotyka dolnej krawędzi hero */
+      position:absolute; right:-2%; bottom:0;   /* dotyka dolnej krawędzi hero */
       pointer-events:none; user-select:none;
     }
     .man{
-      width:clamp(800px,65vw,1350px); /* facet większy */
+      width:clamp(980px,72vw,1600px);           /* DUŻO większy – głowa blisko h1 */
       filter:drop-shadow(0 12px 28px rgba(0,0,0,.18));
     }
-    .man-desktop{display:none}
-    .man-mobile{display:block}
-    @media (min-width:768px){
-      .man-desktop{display:block}
-      .man-mobile{display:none}
-    }
+    .man-desktop{display:none} .man-mobile{display:block}
+    @media (min-width:768px){ .man-desktop{display:block} .man-mobile{display:none} }
 
     /* ===== TESTIMONIALS ===== */
     .testimonials-wrap{
       background:#f7f9ff;
-      margin-top:-var(--peek); /* lekki „peek” */
-      position:relative;
-      z-index:2;
+      margin-top:calc(-1 * var(--peek));        /* tworzy „peek” */
+      position:relative; z-index:2;
     }
-    .testimonials{
-      max-width:900px; margin:28px auto 0;
-      display:grid; gap:18px;
-    }
+    .testimonials{max-width:900px; margin:28px auto 0; display:grid; gap:18px}
     .quote{
-      background:#fff; border-radius:14px;
-      border:1.5px solid #c7ccff;
-      padding:18px;
-      box-shadow:0 6px 18px rgba(95,110,255,.08)
+      background:#fff; border-radius:14px; border:1.5px solid #c7ccff;
+      padding:18px; box-shadow:0 6px 18px rgba(95,110,255,.08)
     }
-    .quote em{color:#4b5563}
-    .quote .name{color:#4f46e5; font-weight:700}
-    .quote small{color:#6b7280}
+    .quote em{color:#4b5563} .quote .name{color:#4f46e5; font-weight:700} .quote small{color:#6b7280}
 
-    /* ===== BOOK (bardziej wystaje, bliżej CTA) ===== */
-    .book-section{position:relative; z-index:3; padding:0 0 0}
+    /* ===== BOOK (wyżej i bliżej „Ready to Start?”) ===== */
+    .book-section{position:relative; z-index:3; padding:0}
     .book{
-      display:block;
-      margin:0 auto;
-      width:min(96%,1100px);
+      display:block; margin:0 auto; width:min(96%,1100px);
       filter:drop-shadow(0 18px 40px rgba(0,0,0,.18));
-      margin-top:-260px; /* mocniej wystaje nad CTA */
+      margin-top:-280px;                         /* mocniej wystaje */
     }
-    @media (min-width:1400px){
-      .book{margin-top:-300px;}
-    }
-    @media (max-width:767px){
-      .book{margin-top:-90px; width:min(95%,760px);}
-    }
+    @media (min-width:1400px){ .book{ margin-top:-320px; } }
+    @media (max-width:767px){ .book{ margin-top:-90px; width:min(95%,760px); } }
 
-    /* ===== CTA – bliżej książki, lepsza strzałka ===== */
+    /* ===== CTA – bliżej książki + animowana strzałka ===== */
     .cta-wrap{padding-top:0}
-    .cta-title{
-      font-size:clamp(42px,7vw,72px);
-      margin:0 0 6px;
-    }
-    .cta-sub{
-      color:#6c72ff;
-      font-weight:700;
-      margin-bottom:8px;
-      font-size:clamp(16px,2.4vw,22px)
-    }
+    .cta-title{font-size:clamp(42px,7vw,72px); margin:0 0 6px}
+    .cta-sub{color:#6c72ff; font-weight:700; margin-bottom:8px; font-size:clamp(16px,2.4vw,22px)}
     .arrow{
-      font-size:clamp(30px,3.8vw,44px);
-      color:#6e76ff;
-      margin:2px 0 6px;
-      animation:bounceDown 1.05s infinite ease-in-out;
-      filter:drop-shadow(0 1px 0 rgba(0,0,0,.1));
+      font-size:clamp(30px,3.8vw,44px); color:#6e76ff; margin:2px 0 6px;
+      animation:bounceDown 1.05s infinite ease-in-out; filter:drop-shadow(0 1px 0 rgba(0,0,0,.1));
     }
-    @keyframes bounceDown{
-      0%,20%,50%,80%,100%{transform:translateY(0)}
-      40%{transform:translateY(8px)}
-      60%{transform:translateY(4px)}
-    }
-    .caption{
-      font-size:clamp(15px,2vw,20px);
-      color:#676e7a;
-    }
-    .cta-panel{
-      background:linear-gradient(180deg,var(--brand1),var(--brand2));
-      color:#fff;
-      padding:70px 0;
-      margin-top:0; /* bliżej książki */
-    }
+    @keyframes bounceDown{0%,20%,50%,80%,100%{transform:translateY(0)} 40%{transform:translateY(8px)} 60%{transform:translateY(4px)}}
+    .caption{font-size:clamp(15px,2vw,20px); color:#676e7a}
+    .cta-panel{background:linear-gradient(180deg,var(--brand1),var(--brand2)); color:#fff; padding:70px 0; margin-top:0}
 
-    footer{
-      font-size:12px; color:#6b7280; padding:16px 0
-    }
+    footer{font-size:12px; color:#6b7280; padding:16px 0}
 
-    /* ===== MOBILE FIX ===== */
+    /* ===== MOBILE FIX – facet nie wchodzi na formularz ===== */
     @media (max-width:767px){
-      .man-holder{
-        position:static;
-        display:block;
-        margin:8px auto 0;
-      }
-      .man{
-        width:90vw;
-      }
+      .man-holder{ position:static; display:block; margin:8px auto 0; }
+      .man{ width:90vw; }
     }
   </style>
 
@@ -184,7 +126,6 @@
     ml('account','1604536');
   </script>
 </head>
-
 <body>
   <!-- HERO -->
   <header class="hero-wrap">
@@ -193,12 +134,11 @@
         <h1>The 3×3 Method</h1>
         <p class="lead">Complete Fitness Reset For Men 40+</p>
         <div class="form-card newsletter">
-          <h3>Unlock Your Free E-book + 7-Day Email Program</h3>
+          <h3>Get Your Free E-book + 7-Day Email Program</h3>
           <div class="ml-embedded" data-form="8aa7Pt"></div>
         </div>
       </div>
 
-      <!-- Facet -->
       <div class="hero-visual">
         <span class="man-holder">
           <img class="man man-desktop" src="./images/man-desktop.png" alt="Coach with book">
@@ -246,8 +186,6 @@
     </div>
   </section>
 
-  <footer>
-    <div class="container">© 2025 FIT 40+. All rights reserved.</div>
-  </footer>
+  <footer><div class="container">© 2025 FIT 40+. All rights reserved.</div></footer>
 </body>
 </html>
