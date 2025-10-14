@@ -40,7 +40,7 @@
       position:relative;
       display:grid; gap:24px; grid-template-columns:1fr; align-items:end;
       min-height:calc(100vh - var(--peek));
-      padding:72px 0 24px; /* nie zmieniamy */
+      padding:72px 0 24px; /* nie zmieniamy – sterujemy --peek/marginesami */
     }
     @media (min-width:1000px){ .hero{grid-template-columns:1fr 1fr} }
 
@@ -67,7 +67,7 @@
     .man-holder{
       position:absolute;
       right:-15%;
-      bottom:-68px;
+      bottom:-68px; /* baza – na desktopie niżej nadpisujemy */
       pointer-events:none; user-select:none;
     }
     .man{
@@ -138,24 +138,29 @@
       .testimonials-wrap{ margin-top:-20px; }
     }
 
-    /* ===== DESKTOP: wyższe hero + mniejszy overlap testimonials ===== */
+    /* ===== DESKTOP: więcej miejsca + lekko wyżej facet + lekko wyżej formularz ===== */
     @media (min-width:1000px){
-      :root{
-        --peek:40px;                /* więcej miejsca na dół hero */
+      :root{ --peek:24px; } /* hero odrobinę wyższe */
+
+      /* Podnieś minimalnie faceta i przesuń w prawo */
+      .man-holder{
+        right:-38%;
+        bottom:-52px; /* było -68px */
       }
+
+      /* Uniesienie całej lewej kolumny (tytuł + formularz) */
+      .hero > div:first-child{
+        margin-bottom:22px; /* przesuwa w górę względem dołu hero */
+      }
+
+      /* Delikatny overlap testimonials, bez podcinania */
       .testimonials-wrap{
         position:relative;
         z-index:1;
-        margin-top:-36px;           /* bliżej hero, ale już nic nie przycina */
+        margin-top:-24px;
       }
-      .testimonials-wrap.section{
-        padding-top:0;
-      }
-      .testimonials{
-        margin-top:12px;
-      }
-      /* Facet w prawo, by nie zasłaniał pól */
-      .man-holder{ right:-38%; }
+      .testimonials-wrap.section{ padding-top:0; }
+      .testimonials{ margin-top:12px; }
     }
   </style>
 
