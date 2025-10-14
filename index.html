@@ -16,7 +16,7 @@
       --container:1120px; --gutter:16px;
       --text:#0f172a; --muted:#6b7280;
       --brand1:#6f80ff; --brand2:#5b6af6; --cta:#16a34a;
-      --peek:80px; /* lekko widoczny „Real Results…” */
+      --peek:80px;                      /* lekko widać Real Results */
     }
 
     body{
@@ -38,8 +38,9 @@
     .hero{
       position:relative;
       display:grid; gap:24px; grid-template-columns:1fr; align-items:end;
-      min-height:calc(100vh - var(--peek));
-      padding:72px 0 80px; /* więcej miejsca na dół */
+      /* svh = ‘safe viewport height’ – stabilne między Chrome/Edge */
+      min-height:calc(100svh - var(--peek));
+      padding:72px 0 88px;              /* dół trochę większy, by nic nie zasłaniało */
     }
     @media (min-width:1000px){ .hero{grid-template-columns:1fr 1fr} }
 
@@ -50,7 +51,7 @@
     }
     .form-card h3{color:#fff; margin-bottom:14px}
 
-    /* ===== FORM ===== */
+    /* ===== MailerLite inputs ===== */
     .newsletter .ml-form-embedContainer,
     .newsletter .ml-form-embedWrapper,
     .newsletter .ml-embedded{width:100%}
@@ -63,20 +64,26 @@
       border:0; border-radius:12px; background:var(--cta); color:#fff; font-weight:800; text-align:center; cursor:pointer
     }
 
-    /* ===== FACET ===== */
+    /* ===== FACET – ~75% większy, przyklejony do dołu ===== */
     .hero-visual{position:relative; z-index:2}
     .man-holder{
-      position:absolute; right:-6%; bottom:0;  /* dotyka dołu sekcji */
+      position:absolute; right:-10%; bottom:0;     /* dotyka dolnej krawędzi hero */
       pointer-events:none; user-select:none;
     }
     .man{
-      width:clamp(1600px,110vw,2400px); /* większy facet */
+      /* znaczne powiększenie + lekkie wysunięcie poza kontener */
+      width:clamp(1800px,122vw,2800px);
       filter:drop-shadow(0 12px 28px rgba(0,0,0,.18));
     }
+    /* na bardzo szerokich ekranach jeszcze ciut większy */
+    @media (min-width:1400px){
+      .man{ width:clamp(2000px,128vw,3200px); }
+    }
+
     .man-desktop{display:none} .man-mobile{display:block}
     @media (min-width:768px){ .man-desktop{display:block} .man-mobile{display:none} }
 
-    /* ===== TESTIMONIALS ===== */
+    /* ===== TESTIMONIALS (peek) ===== */
     .testimonials-wrap{
       background:#f7f9ff;
       margin-top:calc(-1 * var(--peek));
