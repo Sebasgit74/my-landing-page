@@ -16,8 +16,7 @@
       --container:1120px; --gutter:16px;
       --text:#0f172a; --muted:#6b7280;
       --brand1:#6f80ff; --brand2:#5b6af6; --cta:#16a34a;
-      /* mniejszy peek, żeby biały blok nie nachodził na formularz */
-      --peek:70px;
+      --peek:80px; /* lekko widoczny „Real Results…” */
     }
 
     body{
@@ -39,8 +38,8 @@
     .hero{
       position:relative;
       display:grid; gap:24px; grid-template-columns:1fr; align-items:end;
-      min-height:calc(100vh - var(--peek));  /* „peek” następnej sekcji */
-      padding:72px 0 56px;                   /* + dół, żeby nic nie zasłaniało przycisku */
+      min-height:calc(100vh - var(--peek));
+      padding:72px 0 80px; /* więcej miejsca na dół */
     }
     @media (min-width:1000px){ .hero{grid-template-columns:1fr 1fr} }
 
@@ -51,8 +50,10 @@
     }
     .form-card h3{color:#fff; margin-bottom:14px}
 
-    /* MailerLite – 1 zielony przycisk */
-    .newsletter .ml-form-embedContainer,.newsletter .ml-form-embedWrapper,.newsletter .ml-embedded{width:100%}
+    /* ===== FORM ===== */
+    .newsletter .ml-form-embedContainer,
+    .newsletter .ml-form-embedWrapper,
+    .newsletter .ml-embedded{width:100%}
     .newsletter input[type="email"],.newsletter input[type="text"]{
       width:100%; padding:12px 14px; border:1px solid #dbe0ef; border-radius:10px; background:#fff; outline:0; margin:8px 0
     }
@@ -62,24 +63,23 @@
       border:0; border-radius:12px; background:var(--cta); color:#fff; font-weight:800; text-align:center; cursor:pointer
     }
 
-    /* ===== FACET – realne powiększenie i „przyklejenie” do dołu ===== */
+    /* ===== FACET ===== */
     .hero-visual{position:relative; z-index:2}
     .man-holder{
-      position:absolute; right:-6%; bottom:0;   /* dotyka dolnej krawędzi hero */
+      position:absolute; right:-6%; bottom:0;  /* dotyka dołu sekcji */
       pointer-events:none; user-select:none;
     }
-    /* ~+75% vs wcześniejsza wersja: dużo większa szerokość + mocniejsze wysunięcie */
     .man{
-      width:clamp(1400px,95vw,2200px);
+      width:clamp(1600px,110vw,2400px); /* większy facet */
       filter:drop-shadow(0 12px 28px rgba(0,0,0,.18));
     }
     .man-desktop{display:none} .man-mobile{display:block}
     @media (min-width:768px){ .man-desktop{display:block} .man-mobile{display:none} }
 
-    /* ===== TESTIMONIALS (peek) ===== */
+    /* ===== TESTIMONIALS ===== */
     .testimonials-wrap{
       background:#f7f9ff;
-      margin-top:calc(-1 * var(--peek));  /* subtelny „peek” */
+      margin-top:calc(-1 * var(--peek));
       position:relative; z-index:1;
     }
     .testimonials{max-width:900px; margin:28px auto 0; display:grid; gap:18px}
@@ -89,7 +89,7 @@
     }
     .quote em{color:#4b5563} .quote .name{color:#4f46e5; font-weight:700} .quote small{color:#6b7280}
 
-    /* ===== BOOK – lekko bliżej sekcji CTA ===== */
+    /* ===== BOOK ===== */
     .book-section{position:relative; z-index:2; padding:0}
     .book{
       display:block; margin:0 auto; width:min(96%,1100px);
@@ -113,7 +113,7 @@
 
     footer{font-size:12px; color:#6b7280; padding:16px 0}
 
-    /* ===== MOBILE – bez zmian w logice, facet nie wchodzi na formularz ===== */
+    /* ===== MOBILE ===== */
     @media (max-width:767px){
       .hero{padding-bottom:32px}
       .man-holder{ position:static; display:block; margin:8px auto 0; }
