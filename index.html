@@ -40,7 +40,7 @@
       position:relative;
       display:grid; gap:24px; grid-template-columns:1fr; align-items:end;
       min-height:calc(100vh - var(--peek));
-      padding:72px 0 24px; /* nie zmieniamy – sterujemy --peek/marginesami */
+      padding:72px 0 24px; /* domyślnie */
     }
     @media (min-width:1000px){ .hero{grid-template-columns:1fr 1fr} }
 
@@ -138,9 +138,12 @@
       .testimonials-wrap{ margin-top:-20px; }
     }
 
-    /* ===== DESKTOP: więcej miejsca + lekko wyżej facet + lekko wyżej formularz ===== */
+    /* ===== DESKTOP: więcej miejsca + lekko wyżej facet + lekko wyżej formularz + mniej luzu u góry ===== */
     @media (min-width:1000px){
-      :root{ --peek:24px; } /* hero odrobinę wyższe */
+      :root{ --peek:24px; } /* hero odrobinę wyższe (więcej miejsca na dół) */
+
+      /* mniej „powietrza” nad tytułem hero – podnosi całą stronę o ~1 cm */
+      .hero{ padding-top:56px; } /* było 72px; możesz zejść do 52px, jeśli chcesz jeszcze ciut wyżej */
 
       /* Podnieś minimalnie faceta i przesuń w prawo */
       .man-holder{
