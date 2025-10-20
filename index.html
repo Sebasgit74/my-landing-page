@@ -16,7 +16,7 @@
       --container:1120px; --gutter:16px;
       --text:#0f172a; --muted:#6b7280;
       --brand1:#6f80ff; --brand2:#5b6af6; --cta:#16a34a;
-      --peek:140px;        /* bazowo */
+      --peek:140px;        /* baza dla mniejszych ekranów */
       --cta-lift:72px;
     }
     @media (max-width:999px){
@@ -40,7 +40,7 @@
       position:relative;
       display:grid; gap:24px; grid-template-columns:1fr; align-items:end;
       min-height:calc(100vh - var(--peek));
-      padding:72px 0 24px; /* domyślnie */
+      padding:72px 0 24px; /* default (mobile/tablet) */
     }
     @media (min-width:1000px){ .hero{grid-template-columns:1fr 1fr} }
 
@@ -62,12 +62,12 @@
       border:0; border-radius:12px; background:var(--cta); color:#fff; font-weight:800; text-align:center; cursor:pointer
     }
 
-    /* Facet – większy i „przyklejony” do dołu (desktop) */
+    /* Facet – większy i „przyklejony” do dołu */
     .hero-visual{position:relative}
     .man-holder{
       position:absolute;
       right:-15%;
-      bottom:-68px; /* baza – na desktopie niżej nadpisujemy */
+      bottom:-68px;
       pointer-events:none; user-select:none;
     }
     .man{
@@ -138,29 +138,22 @@
       .testimonials-wrap{ margin-top:-20px; }
     }
 
-    /* ===== DESKTOP: więcej miejsca + lekko wyżej facet + lekko wyżej formularz + mniej luzu u góry ===== */
+    /* ===== DESKTOP: skrócenie hero + lekkie podciągnięcie testimonials ===== */
     @media (min-width:1000px){
-      :root{ --peek:24px; } /* hero odrobinę wyższe (więcej miejsca na dół) */
-
-      /* mniej „powietrza” nad tytułem hero – podnosi całą stronę o ~1 cm */
-      .hero{ padding-top:56px; } /* było 72px; możesz zejść do 52px, jeśli chcesz jeszcze ciut wyżej */
-
-      /* Podnieś minimalnie faceta i przesuń w prawo */
-      .man-holder{
-        right:-38%;
-        bottom:-52px; /* było -68px */
+      :root{
+        --peek:160px;            /* WIĘKSZA wartość = krótsze hero (więcej widać niżej) */
       }
+      .hero{ padding-top:48px; }  /* mniej luzu u góry; możesz zejść do 44px */
 
-      /* Uniesienie całej lewej kolumny (tytuł + formularz) */
-      .hero > div:first-child{
-        margin-bottom:22px; /* przesuwa w górę względem dołu hero */
-      }
+      /* przesunięcia, które już ustaliliśmy wcześniej */
+      .man-holder{ right:-38%; bottom:-52px; }
+      .hero > div:first-child{ margin-bottom:22px; }
 
-      /* Delikatny overlap testimonials, bez podcinania */
+      /* subtelne „zajrzenie” testimonials pod hero, bez przycinania */
       .testimonials-wrap{
         position:relative;
         z-index:1;
-        margin-top:-24px;
+        margin-top:-20px;
       }
       .testimonials-wrap.section{ padding-top:0; }
       .testimonials{ margin-top:12px; }
